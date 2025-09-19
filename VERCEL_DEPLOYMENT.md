@@ -34,7 +34,10 @@ VITE_WALLET_CONNECT_PROJECT_ID=2ec9743d0d0cd7fb94dee1a7e6d33475
 VITE_INFURA_API_KEY=b18fb7e6ca7045ac83c41157ab93f990
 ```
 
-**Important**: Make sure to set these for all environments (Production, Preview, Development).
+**Important**: 
+- Make sure to set these for all environments (Production, Preview, Development)
+- Do NOT set environment variables in vercel.json for security reasons
+- Use the Vercel dashboard to manage environment variables
 
 ### Step 4: Configure Build Settings
 

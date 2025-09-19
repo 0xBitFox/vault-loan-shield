@@ -7,7 +7,8 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Shield, Clock, Percent, FileText } from "lucide-react"
+import { EncryptedDataForm } from "@/components/EncryptedDataForm"
+import { Shield, Clock, Percent, FileText, Lock } from "lucide-react"
 
 const Borrow = () => {
   return (
@@ -26,65 +27,34 @@ const Borrow = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
+            <div className="space-y-6">
               <Card className="bg-gradient-card border-primary/20">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-foreground">Create Loan Request</CardTitle>
+                  <CardTitle className="flex items-center gap-2 text-2xl text-foreground">
+                    <Lock className="h-6 w-6 text-primary" />
+                    Add Collateral (FHE-Encrypted)
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="amount">Loan Amount (USDC)</Label>
-                    <Input 
-                      id="amount" 
-                      placeholder="Enter amount..."
-                      className="bg-background/50 border-primary/20"
-                    />
-                  </div>
+                <CardContent>
+                  <EncryptedDataForm 
+                    type="collateral" 
+                    onSuccess={(hash) => console.log('Collateral added:', hash)}
+                  />
+                </CardContent>
+              </Card>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="asset">Asset Type</Label>
-                    <Select>
-                      <SelectTrigger className="bg-background/50 border-primary/20">
-                        <SelectValue placeholder="Select asset type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="property">Real Estate Property</SelectItem>
-                        <SelectItem value="vehicle">Vehicle Title</SelectItem>
-                        <SelectItem value="equipment">Equipment/Machinery</SelectItem>
-                        <SelectItem value="inventory">Business Inventory</SelectItem>
-                        <SelectItem value="other">Other Asset</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="term">Loan Term</Label>
-                    <Select>
-                      <SelectTrigger className="bg-background/50 border-primary/20">
-                        <SelectValue placeholder="Select term" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="3">3 months</SelectItem>
-                        <SelectItem value="6">6 months</SelectItem>
-                        <SelectItem value="12">12 months</SelectItem>
-                        <SelectItem value="24">24 months</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="description">Asset Description</Label>
-                    <Textarea 
-                      id="description"
-                      placeholder="Describe your asset (will be encrypted until funded)..."
-                      className="bg-background/50 border-primary/20"
-                      rows={4}
-                    />
-                  </div>
-
-                  <VaultButton className="w-full" size="lg">
-                    Submit Loan Request
-                  </VaultButton>
+              <Card className="bg-gradient-card border-primary/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-2xl text-foreground">
+                    <Shield className="h-6 w-6 text-primary" />
+                    Create Loan Request
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <EncryptedDataForm 
+                    type="loan" 
+                    onSuccess={(hash) => console.log('Loan created:', hash)}
+                  />
                 </CardContent>
               </Card>
             </div>

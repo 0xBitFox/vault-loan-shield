@@ -7,7 +7,8 @@ import { Progress } from "@/components/ui/progress"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Shield, TrendingUp, Clock, MapPin, Search, Filter } from "lucide-react"
+import { EncryptedDataForm } from "@/components/EncryptedDataForm"
+import { Shield, TrendingUp, Clock, MapPin, Search, Filter, Lock } from "lucide-react"
 
 const Lend = () => {
   const mockLoanRequests = [
@@ -65,6 +66,24 @@ const Lend = () => {
             <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
               Fund asset-backed loans with competitive returns and built-in security
             </p>
+          </div>
+
+          {/* Repayment Section */}
+          <div className="mb-12">
+            <Card className="bg-gradient-card border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-2xl text-foreground">
+                  <Lock className="h-6 w-6 text-primary" />
+                  Repay Loan (FHE-Encrypted)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <EncryptedDataForm 
+                  type="repayment" 
+                  onSuccess={(hash) => console.log('Repayment processed:', hash)}
+                />
+              </CardContent>
+            </Card>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">

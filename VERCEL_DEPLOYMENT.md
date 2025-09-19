@@ -29,15 +29,16 @@ In the Vercel dashboard, go to **Settings** → **Environment Variables** and ad
 
 ```env
 VITE_CHAIN_ID=11155111
-VITE_RPC_URL=https://sepolia.infura.io/v3/b18fb7e6ca7045ac83c41157ab93f990
-VITE_WALLET_CONNECT_PROJECT_ID=2ec9743d0d0cd7fb94dee1a7e6d33475
-VITE_INFURA_API_KEY=b18fb7e6ca7045ac83c41157ab93f990
+VITE_RPC_URL=your_sepolia_rpc_url_here
+VITE_WALLET_CONNECT_PROJECT_ID=your_wallet_connect_project_id_here
+VITE_INFURA_API_KEY=your_infura_api_key_here
 ```
 
 **Important**: 
 - Make sure to set these for all environments (Production, Preview, Development)
 - Do NOT set environment variables in vercel.json for security reasons
 - Use the Vercel dashboard to manage environment variables
+- Replace placeholder values with your actual API keys
 
 ### Step 4: Configure Build Settings
 
@@ -82,6 +83,15 @@ Ensure all environment variables are properly set:
 2. Monitor build logs for any errors
 3. Set up monitoring and alerts if needed
 
+## Environment Variables Reference
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `VITE_CHAIN_ID` | Ethereum chain ID | `11155111` (Sepolia) |
+| `VITE_RPC_URL` | RPC endpoint URL | `https://sepolia.infura.io/v3/YOUR_KEY` |
+| `VITE_WALLET_CONNECT_PROJECT_ID` | WalletConnect project ID | Get from [WalletConnect Cloud](https://cloud.walletconnect.com) |
+| `VITE_INFURA_API_KEY` | Infura API key | Get from [Infura Dashboard](https://infura.io) |
+
 ## Troubleshooting
 
 ### Common Issues
@@ -121,6 +131,14 @@ Ensure all environment variables are properly set:
 - [ ] SSL certificate is active
 - [ ] Custom domain configured (if applicable)
 - [ ] Analytics and monitoring set up
+
+## Security Best Practices
+
+- Never commit API keys to version control
+- Use environment variables for all sensitive data
+- Regularly rotate API keys
+- Monitor for unauthorized access
+- Use HTTPS for all communications
 
 ## Support
 
